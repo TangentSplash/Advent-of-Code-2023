@@ -19,6 +19,8 @@ class Game():
     def pulled(self,colour,number):
         if (self.grabbed[colour]<number):
             self.grabbed[colour]=number
+    def power(self):
+        return self.grabbed["red"]*self.grabbed["green"]*self.grabbed["blue"]
         
         
 DIGIT="\d+"
@@ -49,12 +51,14 @@ defaultGame.grabbed["green"] = 13
 defaultGame.grabbed["blue"] = 14
 
 gameIDs = 0
+powerSum = 0
 for line in Input:
     game = readInput(line)
+    power=game.power()
+    powerSum+=power
+    
     if(game.lessThan(defaultGame)):
         gameIDs += game.number
         
 print("Sum of IDs: ",gameIDs)
-  
-# Tried values      
-# 2137 - Too low
+print("Sum of powers: ",powerSum)
